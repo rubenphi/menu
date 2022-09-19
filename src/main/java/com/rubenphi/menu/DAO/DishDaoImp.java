@@ -1,7 +1,6 @@
 package com.rubenphi.menu.DAO;
 
-
-import com.rubenphi.menu.models.User;
+import com.rubenphi.menu.models.Dish;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,38 +10,38 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserDaoImp implements UserDao {
+public class DishDaoImp implements DishDao {
     @PersistenceContext
     EntityManager entityManager;
 
     @Override
-    public List<User> getUsers() {
-        String query = "FROM User";
+    public List<Dish> getDishes(){
+        String query = "FROM Dish";
         return entityManager.createQuery(query).getResultList();
 
     }
 
     @Override
-    public User saveUser(User user) {
-        return entityManager.merge(user);
+    public Dish saveDish(Dish dish) {
+        return entityManager.merge(dish);
     }
 
     @Override
-    public User updateUser(User user) {
-        return entityManager.merge(user);
+    public Dish updateDish(Dish dish) {
+        return entityManager.merge(dish);
     }
 
     @Override
-    public User getUser(Long id) {
-        User user = entityManager.find(User.class, id);
-        return user;
+    public Dish getDish(Long id) {
+        Dish dish = entityManager.find(Dish.class, id);
+        return dish;
     }
 
     @Override
-    public boolean deleteUser(Long id) {
+    public boolean deleteDish(Long id) {
         try {
-            User user = entityManager.find(User.class, id);
-            entityManager.remove(user);
+            Dish dish = entityManager.find(Dish.class, id);
+            entityManager.remove(dish);
             return true;
         } catch (Exception error) {
             return false;

@@ -36,6 +36,15 @@ public class UsersController {
         return userDao.saveUser(user);
     }
 
+    @PutMapping(path = "/{id}")
+    public User updateUser(@PathVariable("id") Long id,@RequestBody CreateUserDto userRequest) {
+
+        User user = modelMapper.map(userRequest, User.class);
+        user.setId(id);
+        user.setCreatedAt(userDao.getUser(id).getCreatedAt());
+        return userDao.updateUser(user);
+    }
+
     @DeleteMapping(path = "/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         boolean elimination = userDao.deleteUser(id);

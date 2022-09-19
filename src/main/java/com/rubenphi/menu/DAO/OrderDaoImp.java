@@ -1,7 +1,6 @@
 package com.rubenphi.menu.DAO;
 
-
-import com.rubenphi.menu.models.User;
+import com.rubenphi.menu.models.Order;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,38 +10,38 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserDaoImp implements UserDao {
+public class OrderDaoImp implements OrderDao {
     @PersistenceContext
     EntityManager entityManager;
 
     @Override
-    public List<User> getUsers() {
-        String query = "FROM User";
+    public List<Order> getOrders(){
+        String query = "FROM Order";
         return entityManager.createQuery(query).getResultList();
 
     }
 
     @Override
-    public User saveUser(User user) {
-        return entityManager.merge(user);
+    public Order saveOrder(Order order) {
+        return entityManager.merge(order);
     }
 
     @Override
-    public User updateUser(User user) {
-        return entityManager.merge(user);
+    public Order updateOrder(Order order) {
+        return entityManager.merge(order);
     }
 
     @Override
-    public User getUser(Long id) {
-        User user = entityManager.find(User.class, id);
-        return user;
+    public Order getOrder(Long id) {
+        Order order = entityManager.find(Order.class, id);
+        return order;
     }
 
     @Override
-    public boolean deleteUser(Long id) {
+    public boolean deleteOrder(Long id) {
         try {
-            User user = entityManager.find(User.class, id);
-            entityManager.remove(user);
+            Order order = entityManager.find(Order.class, id);
+            entityManager.remove(order);
             return true;
         } catch (Exception error) {
             return false;
