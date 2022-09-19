@@ -1,5 +1,6 @@
 package com.rubenphi.menu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -7,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -22,11 +24,14 @@ public class Order {
     @Setter @Getter
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private User waiter;
     @Setter @Getter
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "table_id", referencedColumnName = "id")
     private RestaurantTable table;
+    @Setter @Getter
+    @OneToMany(mappedBy = "dish")
+    private Set<OrderDish> dishes;
     @Setter
     @Getter
     @Column(name = "created_at", nullable = false, updatable = false)

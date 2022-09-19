@@ -2,6 +2,7 @@ package com.rubenphi.menu.controllers;
 
 import com.rubenphi.menu.DAO.UserDao;
 import com.rubenphi.menu.DTO.CreateUserDto;
+import com.rubenphi.menu.DTO.UpdateUserDto;
 import com.rubenphi.menu.models.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class UsersController {
     }
 
     @PutMapping(path = "/{id}")
-    public User updateUser(@PathVariable("id") Long id,@RequestBody CreateUserDto userRequest) {
+    public User updateUser(@PathVariable("id") Long id,@RequestBody UpdateUserDto userRequest) {
 
         User user = modelMapper.map(userRequest, User.class);
         user.setId(id);

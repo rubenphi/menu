@@ -1,6 +1,7 @@
 package com.rubenphi.menu.DAO;
 
 import com.rubenphi.menu.models.Order;
+import com.rubenphi.menu.models.OrderDish;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,5 +47,31 @@ public class OrderDaoImp implements OrderDao {
         } catch (Exception error) {
             return false;
         }
+    }
+
+    @Override
+    public OrderDish saveOrderDish(OrderDish orderDish) {
+        return entityManager.merge(orderDish);
+    }
+
+    @Override
+    public List<OrderDish> getOrderDishes(Long id) {
+        String query = "FROM OrderDish";
+        return entityManager.createQuery(query).getResultList();
+    }
+
+    @Override
+    public OrderDish getOrderDish(Long id) {
+        return entityManager.find(OrderDish.class, id);
+    }
+
+    @Override
+    public OrderDish updateOrderDish(OrderDish orderDish) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteOrderDish(Long id) {
+        return false;
     }
 }

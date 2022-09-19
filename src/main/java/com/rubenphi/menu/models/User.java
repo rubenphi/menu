@@ -1,5 +1,6 @@
 package com.rubenphi.menu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,6 +30,7 @@ public class User {
     private String code;
     @Setter
     @Getter
+    @JsonIgnore
     private String password;
     @Setter
     @Getter

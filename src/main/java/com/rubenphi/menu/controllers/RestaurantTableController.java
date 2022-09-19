@@ -2,6 +2,7 @@ package com.rubenphi.menu.controllers;
 
 import com.rubenphi.menu.DAO.RestaurantTableDao;
 import com.rubenphi.menu.DTO.CreateRestaurantTableDto;
+import com.rubenphi.menu.DTO.UpdateRestaurantTableDto;
 import com.rubenphi.menu.models.RestaurantTable;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class RestaurantTableController {
     }
 
     @PutMapping(path = "/{id}")
-    public RestaurantTable updateRestaurantTable(@PathVariable("id") Long id,@RequestBody CreateRestaurantTableDto restaurantTableRequest) {
+    public RestaurantTable updateRestaurantTable(@PathVariable("id") Long id,@RequestBody UpdateRestaurantTableDto restaurantTableRequest) {
 
         RestaurantTable restaurantTable = modelMapper.map(restaurantTableRequest, RestaurantTable.class);
         restaurantTable.setId(id);

@@ -10,4 +10,8 @@ public class CreateDishDto {
     @Setter
     @Getter
     private String price;
+
+    @Setter
+    @Getter
+    private Boolean inMenu;
 }

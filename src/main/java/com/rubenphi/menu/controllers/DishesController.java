@@ -2,6 +2,7 @@ package com.rubenphi.menu.controllers;
 
 import com.rubenphi.menu.DAO.DishDao;
 import com.rubenphi.menu.DTO.CreateDishDto;
+import com.rubenphi.menu.DTO.UpdateDishDto;
 import com.rubenphi.menu.models.Dish;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class DishesController {
     }
 
     @PutMapping(path = "/{id}")
-    public Dish updateDish(@PathVariable("id") Long id,@RequestBody CreateDishDto dishRequest) {
+    public Dish updateDish(@PathVariable("id") Long id,@RequestBody UpdateDishDto dishRequest) {
 
         Dish dish = modelMapper.map(dishRequest, Dish.class);
         dish.setId(id);
