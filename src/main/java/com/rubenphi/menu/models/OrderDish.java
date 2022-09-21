@@ -21,16 +21,16 @@ public class OrderDish {
 
     @Setter
     @Getter
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
-    private Order order;
+    Order order;
 
 
     @Setter
     @Getter
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dish_id")
-    private Dish dish;
+    Dish dish;
 
     @Setter
     @Getter

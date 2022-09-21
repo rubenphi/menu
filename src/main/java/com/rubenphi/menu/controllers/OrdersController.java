@@ -95,7 +95,7 @@ public class OrdersController {
     }
 
     @GetMapping(path = "/{id}/dishes")
-    public Set<OrderDish> getOrderDishes(@PathVariable("id") Long id){
+    public List<OrderDish> getOrderDishes(@PathVariable("id") Long id){
         Order order = orderDao.getOrder(id);
         return order.getDishes();
     }

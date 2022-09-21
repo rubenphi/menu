@@ -11,6 +11,11 @@ import javax.persistence.*;
 import java.util.Set;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 @Entity
 @Table(name = "dishes")
 @EntityListeners(AuditingEntityListener.class)
@@ -26,8 +31,8 @@ public class Dish {
     @Setter @Getter
     Boolean inMenu;
     @Setter @Getter
-    @OneToMany(mappedBy = "order")
-    Set<OrderDish> orders;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    List<OrderDish> orders = new ArrayList<>();
     @Setter
     @Getter
     @Column(name = "created_at", nullable = false, updatable = false)

@@ -10,6 +10,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.Set;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity
 @Table(name = "orders")
 @EntityListeners(AuditingEntityListener.class)
@@ -30,8 +34,8 @@ public class Order {
     @JoinColumn(name = "table_id", referencedColumnName = "id")
     private RestaurantTable table;
     @Setter @Getter
-    @OneToMany(mappedBy = "dish")
-    Set<OrderDish> dishes;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "dish")
+    List<OrderDish> dishes = new ArrayList<>();
     @Setter
     @Getter
     @Column(name = "created_at", nullable = false, updatable = false)
