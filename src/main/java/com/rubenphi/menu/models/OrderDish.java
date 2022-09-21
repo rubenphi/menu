@@ -10,23 +10,26 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "dish_order")
+@Table(name = "order_dish")
 @EntityListeners(AuditingEntityListener.class)
 public class OrderDish {
-    @EmbeddedId
-    private OrderDishId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter
+    @Getter
+    Long id;
 
     @Setter
     @Getter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("orderId")
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
 
     @Setter
     @Getter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("dishId")
+    @ManyToOne
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
     @Setter
@@ -44,31 +47,5 @@ public class OrderDish {
     @Column(name = "updated_at")
     private String updatedAt;
 
-    private OrderDish() {}
-
-    public OrderDish(Order order, Dish dish) {
-        this.order = order;
-        this.dish = dish;
-        this.id = new OrderDishId(order.getId(), dish.getId());
-    }
-
-    //Getters and setters omitted for brevity
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        OrderDish that = (OrderDish) o;
-        return Objects.equals(order, that.order) &&
-                Objects.equals(dish, that.dish);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(order, dish);
-    }
 
 }

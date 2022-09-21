@@ -27,8 +27,7 @@ public class Dish {
     Boolean inMenu;
     @Setter @Getter
     @OneToMany(mappedBy = "order")
-    @JsonIgnore
-    private Set<OrderDish> orders;
+    Set<OrderDish> orders;
     @Setter
     @Getter
     @Column(name = "created_at", nullable = false, updatable = false)

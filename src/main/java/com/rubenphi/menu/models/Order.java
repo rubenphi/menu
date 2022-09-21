@@ -31,7 +31,7 @@ public class Order {
     private RestaurantTable table;
     @Setter @Getter
     @OneToMany(mappedBy = "dish")
-    private Set<OrderDish> dishes;
+    Set<OrderDish> dishes;
     @Setter
     @Getter
     @Column(name = "created_at", nullable = false, updatable = false)
