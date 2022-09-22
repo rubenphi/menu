@@ -11,7 +11,6 @@ import com.rubenphi.menu.models.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Set;
 
@@ -50,21 +49,22 @@ public class OrdersController {
         RestaurantTable table = tableDao.getRestaurantTable(orderRequest.getTableId());
         User waiter = userDao.getUser(orderRequest.getWaiterId());
         Order order = new Order();
-        order.setCode(orderRequest.getCode());
         order.setWaiter(waiter);
         order.setTable(table);
-        return orderDao.saveOrder(order);
+        Order orderSaved = orderDao.saveOrder(order);
+        return orderDao.saveOrder(orderSaved);
     }
 
     @PutMapping(path = "/{id}")
     public Order updateOrder(@PathVariable("id") Long id,@RequestBody UpdateOrderDto orderRequest) {
         RestaurantTable table = tableDao.getRestaurantTable(orderRequest.getTableId());
         User waiter = userDao.getUser(orderRequest.getWaiterId());
+        Set<OrderDish> orderDishes = orderDao.getOrder(id).getOrderDishes();;
         Order order = new Order();
         order.setId(id);
-        order.setCode(orderRequest.getCode());
         order.setWaiter(waiter);
         order.setTable(table);
+        order.setOrderDishes(orderDishes);
         order.setCreatedAt(orderDao.getOrder(id).getCreatedAt());
         return orderDao.updateOrder(order);
     }
@@ -95,9 +95,9 @@ public class OrdersController {
     }
 
     @GetMapping(path = "/{id}/dishes")
-    public List<OrderDish> getOrderDishes(@PathVariable("id") Long id){
+    public Set<OrderDish> getOrderDishes(@PathVariable("id") Long id){
         Order order = orderDao.getOrder(id);
-        return order.getDishes();
+        return order.getOrderDishes();
     }
 
 

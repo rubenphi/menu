@@ -6,9 +6,6 @@ import lombok.Setter;
 public class CreateOrderDto {
     @Setter
     @Getter
-    private String code;
-    @Setter
-    @Getter
     private Long waiterId;
     @Setter
     @Getter

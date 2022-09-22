@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 @Transactional
@@ -55,9 +57,9 @@ public class OrderDaoImp implements OrderDao {
     }
 
     @Override
-    public List<OrderDish> getOrderDishes(Long id) {
+    public Set<OrderDish> getOrderDishes(Long id) {
         String query = "FROM OrderDish";
-        return entityManager.createQuery(query).getResultList();
+        return new HashSet<OrderDish>(entityManager.createQuery(query).getResultList());
     }
 
     @Override

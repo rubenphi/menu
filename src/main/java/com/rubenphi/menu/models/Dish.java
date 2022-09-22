@@ -31,8 +31,9 @@ public class Dish {
     @Setter @Getter
     Boolean inMenu;
     @Setter @Getter
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
-    List<OrderDish> orders = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<OrderDish> orders;
     @Setter
     @Getter
     @Column(name = "created_at", nullable = false, updatable = false)

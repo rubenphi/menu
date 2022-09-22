@@ -1,5 +1,6 @@
 package com.rubenphi.menu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -21,14 +22,15 @@ public class OrderDish {
 
     @Setter
     @Getter
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "order_id")
     Order order;
 
 
     @Setter
     @Getter
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "dish_id")
     Dish dish;
 

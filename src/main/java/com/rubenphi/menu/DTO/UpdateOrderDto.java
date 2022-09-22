@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class UpdateOrderDto {
-    @Setter
-    @Getter
-    private String code;
+
     @Setter
     @Getter
     private Long waiterId;

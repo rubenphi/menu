@@ -4,6 +4,7 @@ import com.rubenphi.menu.models.Order;
 import com.rubenphi.menu.models.OrderDish;
 
 import java.util.List;
+import java.util.Set;
 
 public interface OrderDao {
 
@@ -18,7 +19,7 @@ public interface OrderDao {
 
     OrderDish saveOrderDish(OrderDish orderDish);
 
-    List<OrderDish> getOrderDishes(Long id);
+    Set<OrderDish> getOrderDishes(Long id);
 
     OrderDish getOrderDish(Long id);
 
