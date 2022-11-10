@@ -9,7 +9,7 @@ public class UpdateDishDto {
     private String name;
     @Setter
     @Getter
-    private String price;
+    private Integer price;
 
     @Setter
     @Getter
